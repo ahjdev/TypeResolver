@@ -48,12 +48,10 @@ jobs:
         run: "rsync -r --delete build/docs/* docs/docs/components/type-resolver"
 
       - name: "Commit"
-        run: |
-          cd docs
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add .
-          git commit -a -m "Update type-resolver documentation"
+        uses: "stefanzweifel/git-auto-commit-action@v5"
+        with:
+          repository: "docs"
+          commit_message: "Update type-resolver documentation"
 
       - name: "Push"
         uses: "ad-m/github-push-action@master"
