@@ -45,7 +45,7 @@ jobs:
           path: "build/docs"
 
       - name: "Copy files"
-        run: "cp -r build/docs docs/docs/components/type-resolver"
+        run: "rsync -r --delete build/docs docs/docs/components/type-resolver"
 
       - name: "Commit"
         run: |
