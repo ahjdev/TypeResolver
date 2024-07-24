@@ -18,7 +18,7 @@ use phpDocumentor\Reflection\Types\Mixed_;
 use phpDocumentor\Reflection\PseudoType;
 
 /** @psalm-immutable */
-final class KeyOf implements PseudoType
+final class KeyOf extends Mixed_ implements PseudoType
 {
     /** @var Type */
     protected $keyType;

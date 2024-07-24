@@ -14,11 +14,13 @@ declare(strict_types=1);
 namespace phpDocumentor\Reflection\PseudoTypes;
 
 use phpDocumentor\Reflection\Type;
+use phpDocumentor\Reflection\PseudoType;
 use phpDocumentor\Reflection\Types\Integer;
-use phpDocumentor\Reflection\PseudoTypes\AggregatedPseudoType;
+use phpDocumentor\Reflection\Types\Compound;
+use phpDocumentor\Reflection\Types\AggregatedType;
 
 /** @psalm-immutable */
-final class IntMask  extends AggregatedPseudoType
+final class IntMask extends AggregatedType implements PseudoType
 {
     public function __construct(array $types)
     {
@@ -27,7 +29,7 @@ final class IntMask  extends AggregatedPseudoType
 
     public function underlyingType(): Type
     {
-        return new Integer();
+        return new Compound([new Integer()]);
     }
 
     /**

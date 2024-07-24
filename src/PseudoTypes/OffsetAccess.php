@@ -20,7 +20,7 @@ use phpDocumentor\Reflection\Types\Mixed_;
 use phpDocumentor\Reflection\Types\Nullable;
 
 /** @psalm-immutable */
-final class OffsetAccess implements PseudoType
+final class OffsetAccess extends Mixed_ implements PseudoType
 {
     /** @var Type */
     private $valueType;

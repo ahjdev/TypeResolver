@@ -22,7 +22,7 @@ use phpDocumentor\Reflection\Types\Mixed_;
  *
  * @psalm-immutable
  */
-abstract class AbstractConditional implements PseudoType
+abstract class AbstractConditional extends Mixed_ implements PseudoType
 {
     /** @var Type */
     private $target;

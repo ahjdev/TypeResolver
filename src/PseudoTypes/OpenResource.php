@@ -22,7 +22,7 @@ use phpDocumentor\Reflection\Types\Resource_;
  *
  * @psalm-immutable
  */
-final class OpenResource implements PseudoType
+final class OpenResource extends Resource_ implements PseudoType
 {
     public function underlyingType(): Type
     {

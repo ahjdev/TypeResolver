@@ -19,7 +19,7 @@ use phpDocumentor\Reflection\PseudoType;
 use phpDocumentor\Reflection\Types\Array_;
 
 /** @psalm-immutable */
-class PropertiesOf implements PseudoType
+class PropertiesOf extends Array_ implements PseudoType
 {
     /** @var Fqsen|null */
     private $fqsen;

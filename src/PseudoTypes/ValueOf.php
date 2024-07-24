@@ -18,7 +18,7 @@ use phpDocumentor\Reflection\Types\Mixed_;
 use phpDocumentor\Reflection\PseudoType;
 
 /** @psalm-immutable */
-final class ValueOf implements PseudoType
+final class ValueOf extends Mixed_ implements PseudoType
 {
     /** @var Type */
     protected $valueType;
