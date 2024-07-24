@@ -359,16 +359,22 @@ final class TypeResolver
                 return new This();
 
             case ConditionalTypeNode::class:
+                return new Conditional(
+                    $this->createType($type->subjectType, $context),
+                    $this->createType($type->targetType, $context),
+                    $this->createType($type->if, $context),
+                    $this->createType($type->else, $context),
+                    $type->negated
+                );
+
             case ConditionalTypeForParameterNode::class:
-                [$class, $subject] = $type instanceof ConditionalTypeForParameterNode
-                    ? [ConditionalParameter::class, $type->parameterName]
-                    : [Conditional::class, $this->createType($type->subjectType, $context)];
-
-                $target    = $this->createType($type->targetType, $context);
-                $if        = $this->createType($type->if, $context);
-                $else      = $this->createType($type->else, $context);
-
-                return new $class($subject, $target, $if, $else, $type->negated);
+                return new ConditionalParameter(
+                    $type->parameterName,
+                    $this->createType($type->targetType, $context),
+                    $this->createType($type->if, $context),
+                    $this->createType($type->else, $context),
+                    $type->negated
+                );
 
             case OffsetAccessTypeNode::class:
                 $offset = $this->createType($type->offset, $context);
