@@ -22,7 +22,7 @@ use phpDocumentor\Reflection\Types\Array_;
 class PropertiesOf extends Array_ implements PseudoType
 {
     /** @var Fqsen|null */
-    private $fqsen;
+    protected $fqsen;
 
     /**
      * Initializes this representation of a class string with the given Fqsen.

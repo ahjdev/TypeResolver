@@ -25,16 +25,16 @@ use phpDocumentor\Reflection\Types\Mixed_;
 abstract class AbstractConditional extends Mixed_ implements PseudoType
 {
     /** @var Type */
-    private $target;
+    protected $target;
 
     /** @var Type */
-    private $if;
+    protected $if;
 
     /** @var Type */
-    private $else;
+    protected $else;
 
     /** @var bool */
-    private $negated;
+    protected $negated;
 
     public function __construct(Type $target, Type $if, Type $else, bool $negated)
     {
