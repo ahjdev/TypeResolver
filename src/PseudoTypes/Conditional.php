@@ -40,12 +40,12 @@ final class Conditional extends AbstractConditional
     public function __toString(): string
     {
         return sprintf(
-			'(%s %s %s ? %s : %s)',
-			$this->subject,
-			$this->negated ? 'is not' : 'is',
-			$this->target,
-			$this->if,
-			$this->else
-		);
-	}
+            '(%s %s %s ? %s : %s)',
+            $this->subject,
+            $this->negated ? 'is not' : 'is',
+            $this->target,
+            $this->if,
+            $this->else
+        );
+    }
 }

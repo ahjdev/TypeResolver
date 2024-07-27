@@ -22,20 +22,8 @@ use phpDocumentor\Reflection\PseudoTypes\PropertiesOf;
 use phpDocumentor\Reflection\PseudoTypes\ProtectedPropertiesOf;
 use phpDocumentor\Reflection\PseudoTypes\PublicPropertiesOf;
 use phpDocumentor\Reflection\PseudoTypes\ValueOf;
-use function trim;
-use function strpos;
-use function sprintf;
 use RuntimeException;
-use function in_array;
-use function array_map;
-use function get_class;
-use function strtolower;
-use function array_filter;
-use function class_exists;
-use function array_reverse;
 use InvalidArgumentException;
-use function array_key_exists;
-use function class_implements;
 use phpDocumentor\Reflection\Type;
 use PHPStan\PhpDocParser\Lexer\Lexer;
 use Doctrine\Deprecations\Deprecation;
@@ -112,7 +100,6 @@ use PHPStan\PhpDocParser\Ast\Type\OffsetAccessTypeNode;
 use phpDocumentor\Reflection\PseudoTypes\ArrayShapeItem;
 use phpDocumentor\Reflection\PseudoTypes\CallableString;
 use phpDocumentor\Reflection\PseudoTypes\NonEmptyString;
-
 use phpDocumentor\Reflection\PseudoTypes\ConstExpression;
 use phpDocumentor\Reflection\PseudoTypes\LowercaseString;
 use phpDocumentor\Reflection\PseudoTypes\NegativeInteger;
@@ -125,7 +112,20 @@ use PHPStan\PhpDocParser\Ast\ConstExpr\ConstExprIntegerNode;
 use PHPStan\PhpDocParser\Ast\Type\CallableTypeParameterNode;
 use phpDocumentor\Reflection\PseudoTypes\ConditionalParameter;
 use phpDocumentor\Reflection\PseudoTypes\NonEmptyLowercaseString;
+
 use PHPStan\PhpDocParser\Ast\Type\ConditionalTypeForParameterNode;
+use function trim;
+use function strpos;
+use function sprintf;
+use function in_array;
+use function array_map;
+use function get_class;
+use function strtolower;
+use function array_filter;
+use function class_exists;
+use function array_reverse;
+use function array_key_exists;
+use function class_implements;
 
 final class TypeResolver
 {
@@ -290,6 +290,7 @@ final class TypeResolver
                     default:
                         throw new RuntimeException('Unsupported array shape kind');
                 }
+                // no break
             case ObjectShapeNode::class:
                 return new ObjectShape(
                     ...array_map(
@@ -464,7 +465,7 @@ final class TypeResolver
                 return new PrivatePropertiesOf(
                     $subType->getFqsen()
                 );
-                                        
+
             case 'list':
                 return new List_(
                     $this->createType($type->genericTypes[0], $context)
@@ -474,12 +475,12 @@ final class TypeResolver
                 return new NonEmptyList(
                     $this->createType($type->genericTypes[0], $context)
                 );
-            
+
             case 'key-of':
                 return new KeyOf(
                     $this->createType($type->genericTypes[0], $context)
                 );
-            
+
             case 'value-of':
                 return new ValueOf(
                     $this->createType($type->genericTypes[0], $context)

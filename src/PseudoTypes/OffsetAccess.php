@@ -54,13 +54,13 @@ final class OffsetAccess extends Mixed_ implements PseudoType
      */
     public function __toString(): string
     {
-		if (
-			$this->valueType instanceof Callable_
-			|| $this->valueType instanceof Nullable
-		) {
-			return '(' . $this->valueType . ')[' . $this->offsetType . ']';
-		}
+        if (
+            $this->valueType instanceof Callable_
+            || $this->valueType instanceof Nullable
+        ) {
+            return '(' . $this->valueType . ')[' . $this->offsetType . ']';
+        }
 
-		return $this->valueType . '[' . $this->offsetType . ']';
+        return $this->valueType . '[' . $this->offsetType . ']';
     }
 }
